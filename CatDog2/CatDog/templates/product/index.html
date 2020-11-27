@@ -1,0 +1,46 @@
+{% extends "base/base.html" %}
+
+{% block content %} 
+<div class="row">
+    <div class="container">
+        <h3>Lista de alimentos</h3>
+        <a href="/addproduct" class="btn-floating btn-small blue darken-2 add-product-list">
+            <i class="material-icons">add</i>
+        </a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+        <tbody>
+            {% if products %}
+            <!-- Inicio ciclo for -->
+            {% for product in products %}
+            <tr>
+                <td>{{ product.description }}</td>
+                <td>{{ product.value }}</td>
+                <td>
+                    <a href="{% url 'ProductEdit' product.id %}" class="btn-floating btn-small blue darken-2">
+                        <i class="material-icons">create</i>
+                    </a>
+                    <a href="{% url 'ProductDelete' product.id %}" class="btn-floating btn-small green darken-2">
+                        <i class="material-icons">find_in_page</i>
+                    </a>
+                    <a href="{% url 'ProductDelete' product.id %}" class="btn-floating btn-small red darken-2">
+                        <i class="material-icons">delete</i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            <!-- Fin ciclo for -->
+            {% else %}
+            <h1>¡No hay registros en nuestra base de datos!</h1>
+            <!-- se cierra el if -->
+            {% endif %}
+        </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

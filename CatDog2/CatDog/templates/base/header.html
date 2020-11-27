@@ -1,0 +1,180 @@
+{% extends "base/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    {% block header %}
+
+    <div class="header-one">
+      <div class="header-one-left">
+        <p class="text-header-one-title">
+          CatDog <i class="material-icons">pets</i>
+        </p>
+      </div>
+      <div class="header-one-center">
+        <p class="text-header-one">
+          Whatsapp: +56 9 44567783 / Correo electrónico:
+          CatDog@gmail.com
+        </p>
+      </div>
+
+      {% if user.is_authenticated %}
+      <div class="header-one-right">
+        <a class="btn black buttons-header-one button-menu hvr" href="{% url 'logout' %}">
+          <i class="material-icons left">login</i>Cerrar sesión
+        </a>
+      </div>
+      {% else %}    
+      <div class="header-one-right">
+        <a class="btn black buttons-header-one button-menu hvr" href="/newuser">
+          <i class="material-icons left">face</i>Registrarse
+        </a>
+
+        <a class="btn black buttons-header-one button-menu hvr" href="/login">
+          <i class="material-icons left">person</i>Iniciar sesión
+        </a>
+      </div>
+      {% endif %}
+    </div>
+
+    <nav class="light-blue darken-4">
+      <a
+        href="#"
+        data-target="slide-out"
+        class="sidenav-trigger show-on-medium-and-up"
+        ><i class="material-icons left">menu</i>Menú</a
+      >
+
+      <a href="#" class="btn-large light-blue darken-3 button-menu-end hvr"
+        >Ofertas <i class="material-icons left">local_offer</i></a
+      >
+      <a
+        href="#"
+        data-target="dropdown1"
+        class="dropdown-trigger btn-large light-blue darken-3 button-menu hvr"
+        ><i class="material-icons left">dashboard</i> Productos</a
+      >
+      <a href="/foods" class="btn-large light-blue darken-3 button-menu hvr"
+        ><i class="material-icons left">pets</i> Alimentos</a
+      >
+      <a href="#" class="btn-large light-blue darken-3 button-menu hvr"
+        ><i class="material-icons left">email</i>Contacto</a
+      >
+    </nav>
+
+    <ul id="dropdown1" class="dropdown-content">
+      <div class="row">
+        <h5 class="title-dropdown">Nuestros productos</h5>
+        <div class="dropdown-left1">
+          <li class="hover-subtitle-dropdown">
+            <p class="subtitle-dropdown">
+              <i class="material-icons icons-sub-menu">local_hospital</i> Salud
+              y bienestar
+            </p>
+          </li>
+          <li class="divider"></li>
+          <li class="divider"></li>
+          <li class="divider"></li>
+          <li><a class="hvr-drp" href="#!">Arena de gato</a></li>
+          <li><a class="hvr-drp" href="#!">Control de parásitos</a></li>
+          <li><a class="hvr-drp" href="#!">Medicamentos</a></li>
+          <li><a class="hvr-drp" href="#!">Nutrición</a></li>
+        </div>
+        <div class="dropdown-left2">
+          <li class="hover-subtitle-dropdown">
+            <p class="subtitle-dropdown">
+              <i class="material-icons icons-sub-menu">checkroom</i> Vestuario y
+              Accesorios
+            </p>
+          </li>
+          <li class="divider"></li>
+          <li class="divider"></li>
+          <li class="divider"></li>
+          <li><a class="hvr-drp" href="#!">Polerones-Chaquetas</a></li>
+          <li><a class="hvr-drp" href="#!">Disfraces</a></li>
+          <li><a class="hvr-drp" href="#!">Accesorios</a></li>
+          <li><a class="hvr-drp" href="#!">Zapatos</a></li>
+        </div>
+        <div class="dropdown-center">
+          <li class="hover-subtitle-dropdown">
+            <p class="subtitle-dropdown">
+              <i class="material-icons icons-sub-menu">sports_cricket</i>
+              Entretención
+            </p>
+          </li>
+          <li class="divider"></li>
+          <li class="divider"></li>
+          <li class="divider"></li>
+          <li><a class="hvr-drp" href="#!">Perros</a></li>
+          <li><a class="hvr-drp" href="#!">Gatos</a></li>
+        </div>
+        <div class="dropdown-right1">
+          <li class="hover-subtitle-dropdown">
+            <p class="subtitle-dropdown">
+              <i class="material-icons icons-sub-menu">night_shelter</i> Camas y
+              estar
+            </p>
+          </li>
+          <li class="divider"></li>
+          <li class="divider"></li>
+          <li class="divider"></li>
+          <li><a class="hvr-drp" href="#!">Rascadores</a></li>
+          <li><a class="hvr-drp" href="#!">Camas</a></li>
+        </div>
+        <div class="dropdown-right2">
+          <li class="hover-subtitle-dropdown">
+            <p class="subtitle-dropdown">
+              <i class="material-icons icons-sub-menu">pets</i> Alimentación
+            </p>
+          </li>
+          <li class="divider"></li>
+          <li class="divider"></li>
+          <li class="divider"></li>
+          <li><a class="hvr-drp" href="#!">Platos</a></li>
+          <li><a class="hvr-drp" href="#!">Bebederos</a></li>
+        </div>
+      </div>
+    </ul>
+
+    <!-- Inicio menú lateral del usuario -->
+    <ul id="slide-out" class="sidenav">
+      <li>
+        <div class="user-view">
+          <div class="background">
+            <img class="img1" src="/static/img/perfil1.png" />
+          </div>
+          <a href="#user">
+            <img class="img2" class="circle" src="/static/img/person1.png"/>
+          </a>
+          {% if user.is_authenticated %}
+          <a href="#name">
+            <span class="white-text name">{{ user.username }}</span>
+          </a>
+          <a href="#mail">
+            <span class="white-text mail">{{ user.email }}</span>
+          </a>
+          {% else %}
+          <a href="#nose">
+            <span class="white-text nose">No hay usuario</span>
+          </a>
+          {% endif %}
+        </div>
+      </li>
+      <li class="hover-item-menu">
+        <a href="/listfood">
+          <i class="material-icons left">list</i> Lista de alimentos
+        </a>
+      </li>
+    </ul>
+    <!-- Fin menú lateral del usuario -->
+
+    {% endblock header %}
+
+    <!--contenido-->
+
+    {% block content %} {% endblock content %}
+
+    <!--footer-->
+
+    {% block footer %} {% endblock footer %}
+  </body>
+</html>

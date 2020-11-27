@@ -1,0 +1,63 @@
+{% extends "base/base.html" %}
+
+<!-- contenido -->
+{% block content %}
+
+<div class="row">
+  <div class="container">
+    <h3>Lista de alimentos</h3>
+    <a
+      href="/addfood"
+      class="btn-floating btn-small blue darken-2 add-product-list"
+      ><i class="material-icons">add</i></a
+    >
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre del alimento</th>
+          <th>Descripción del alimento</th>
+          <th>Tipo de mascota</th>
+          <th>Valor del alimento</th>
+          <th>Imagen del alimento</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if food %}
+        <!-- Inicio ciclo for -->
+        {% for object in food %}
+        <tr>
+          <td>{{ object.food_name }}</td>
+          <td>{{ object.description }}</td>
+          <td>{{ object.type_of_pet }}</td>
+          <td>{{ object.food_cost }}</td>
+          <td>{{ object.image }}</td>
+          <td>
+            <a
+              href="{% url 'editFood' object.id %}"
+              class="btn-floating btn-small blue darken-2"
+              ><i class="material-icons">create</i></a
+            >
+            <a
+              href="{% url 'detailsFood' object.id %}"
+              class="btn-floating btn-small green darken-2"
+              ><i class="material-icons">find_in_page</i></a
+            >
+            <a
+              href="{% url 'deleteFood' object.id %}"
+              class="btn-floating btn-small red darken-2"
+              ><i class="material-icons">delete</i></a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+        <!-- Fin ciclo for -->
+        {% else %}
+        <h1>No hay registros en nuestra base de datos!</h1>
+        <!-- se cierra el if -->
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock content %}

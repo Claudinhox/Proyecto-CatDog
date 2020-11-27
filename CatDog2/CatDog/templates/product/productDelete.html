@@ -1,0 +1,46 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="card card-delete">
+        <form method="POST">
+        {% csrf_token %}
+  
+        <div class="card-title">
+            <small class="product-delete-select">¿Estas seguro que desea eliminar este alimento?</small>
+        </div>
+        <hr>
+  
+        <div class="card card-delete-product">
+            <card-title> Datos del Producto: </card-title>
+            <div class="card-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Descripción:</th>
+                            <th>Valor producto:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ product.description }}</td>
+                            <td>{{ product.value }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-action">
+                <div class="actions-delete">
+                    <button class="btn-small red darken-2" type="submit">
+                        Eliminar
+                    </button>
+                    <a class="btn-small blue darken-2" href="{% url 'ProductIndex' %}">
+                        Volver
+                    </a>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

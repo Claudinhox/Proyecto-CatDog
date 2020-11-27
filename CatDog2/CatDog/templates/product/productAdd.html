@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="container">
+        <div class="card card-add-product">
+            <div class="card-title">Agregar Producto</div>
+            <form method="POST">
+            {% csrf_token %} 
+            {{ form.as_p }}
+            <button class="btn blue darken-3">Agregar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

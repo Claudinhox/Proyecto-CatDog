@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <!-- static css -->
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+    <title>{% block title %} CatDog {% endblock title %}</title>
+</head>
+<body>
+    {% block header %}
+    {% include "base/header.html" %}
+    {% endblock header %}
+    
+    {% block content %}
+    {% endblock content %}
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    {% if messages %}
+      {% for message in messages %}
+      
+        <!-- Success -->
+        {% if message.tags == 'success' %}
+          <script>
+            M.toast({
+              html: '{{message}}',
+              classes: 'green rounded',
+              displayLength: 4000,
+            })
+          </script>
+        {% endif %}
+
+        <!-- Info -->
+        {% if message.tags == 'info' %}
+          <script>
+            M.toast({
+              html: '{{message}}',
+              classes: 'blue rounded',
+              displayLength: 4000,
+            })
+          </script>
+        {% endif %}
+
+        <!-- Warning -->
+        {% if message.tags == 'warning' %}
+          <script>
+            M.toast({
+              html: '{{message}}',
+              classes: 'orange rounded',
+              displayLength: 4000,
+            })
+          </script>
+        {% endif %}  
+
+        <!-- Error -->
+        {% if message.tags == 'error' %}
+          <script>
+            M.toast({
+              html: '{{message}}',
+              classes: 'red rounded',
+              displayLength: 4000,
+            })
+          </script>
+        {% endif %} 
+
+      {% endfor %}
+    {% endif %}
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        M.AutoInit();
+        var elems_carousel = document.querySelectorAll(".carousel");
+        var instances = M.Carousel.init(elems_carousel, {
+          duration: 500,
+          fullWidth: true,
+          indicators: true,
+        });
+        autoplay();
+        function autoplay() {
+          $(".carousel").carousel("next");
+          setTimeout(autoplay, 6000);
+        }
+      });
+    </script> 
+</body>
+</html>

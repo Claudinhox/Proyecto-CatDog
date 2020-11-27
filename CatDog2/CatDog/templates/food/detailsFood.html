@@ -1,0 +1,30 @@
+{% extends "base/base.html" %}
+
+<!-- contenido -->
+{% block content %}
+
+<div class="row">
+  <div class="card card-delete">
+    <div class="card-title">
+      <span class="product-delete-select">
+        Nombre del alimento seleccionado: {{ food.food_name }}
+      </span>
+    </div>
+
+    <div class="card-content">
+      <hr />
+      <div class="space-left-details">
+        <p>Tipo de mascota: {{ food.type_of_pet }}</p>
+      </div>
+      <div class="space-right-details">
+        <p>Descripción del alimento: {{ food.description }}</p>
+        <p>Valor alimento: {{ food.food_cost }}</p>
+      </div>
+    </div>
+    <div class="card-action">
+      <a href="#">This is a link</a>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
